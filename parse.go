@@ -153,6 +153,7 @@ func (c *Config) GetCountries(w http.ResponseWriter, r *http.Request) {
 		log.Println(err)
 	}
 	result, _ := json.Marshal(data)
+	w.Header().Set("Content-Type", "application/json")
 	w.Write(result)
 
 }

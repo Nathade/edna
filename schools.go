@@ -35,6 +35,16 @@ type School struct {
 	Verified        bool   `json:"verified"`
 }
 
+type Enterprise struct {
+	FullName   string
+	School     string
+	Email      string
+	Country    string
+	Address    string
+	NoStudents string
+	NoProposed string
+}
+
 type recacptchaResponse struct {
 	Success     bool   `json:"success"`
 	ChallengeTs string `json:"challenge_ts"` // timestamp of the challenge load (ISO format yyyy-MM-dd'T'HH:mm:ssZZ)
@@ -385,4 +395,17 @@ func (c *Config) GetSchoolHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println(err)
 	}
 
+}
+
+func (c *Config) EnterpriseHandler(w http.ResponseWriter, r *http.Request) {
+	data := new(Enterprise)
+	log.Println(r.FormValue("name"))
+	data.FullName = r.FormValue("name")
+	data.School = r.FormValue("email")
+	data.Country = r.FormValue("country")
+	data.Address = r.FormValue("address")
+	data.NoStudents = r.FormValue("students_no")
+	data.NoProposed = r.FormValue("proposed")
+	log.Println(data)
+	http.Redirect(w, r, "/", http.StatusOK)
 }

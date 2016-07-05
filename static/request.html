@@ -1,36 +1,92 @@
-<form>
-  <div class="form-group">
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+        <!--<link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">-->
+
+
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <style>
+          .edna-form-group{
+            background-color:#fff;
+          }
+        </style>
+        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+        <script>
+        function init(){
+          console.log("init");
+            var list = document.getElementById("countryList");
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function(){
+              //console.log(xhttp.responseText);
+              var json = JSON.parse(xhttp.responseText);
+              for(var i=0; i < xhttp.responseText.length; i++){
+                list.add(new Option(json[i].Country, json[i].Country));
+
+              }
+                //console.log(JSON.stringify(eval("("+xhttp.responseText+")")));
+
+            };
+            xhttp.open("GET", "/api/GetCountries");
+            xhttp.send();
+
+        }
+
+
+        </script>
+    </head>
+    <body style="padding-top:0" onload="init()">
+      <section style="text-align:center;">
+
+          <section class="register-form-side register-form" style="text-align:left;;">
+            <div  class="pad">
+              <br/>
+
+<form method="post" action="/enterprise"> 
+  <div class="form-group edna-form-group">
     <label for="exampleInputEmail1">Full Name</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Email">
+    <input type="text" class="form-control" id="exampleInputEmail1" name="name">
   </div>
-  <div class="form-group">
+  <div class="form-group edna-form-group">
     <label for="exampleInputPassword1">School/Education Institution</label>
-    <input type="text" class="form-control" id="exampleInputPassword1">
+    <input type="text" class="form-control" id="exampleInputPassword1" name="school">
   </div>
-  <div class="form-group">
+  <div class="form-group edna-form-group">
     <label for="exampleInputPassword1">Email</label>
-    <input type="email" class="form-control" id="exampleInputPassword1">
+    <input type="email" class="form-control" id="exampleInputPassword1" name="email">
   </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Location</label>
-    <input type="text" class="form-control" id="exampleInputPassword1">
-  </div>
-  <div class="form-group">
+  <div class="form-group edna-form-group">
     <label for="exampleInputPassword1">Country</label>
-    <select></select>
+    <select id="countryList" name="country"></select>
   </div>
-  <div class="form-group">
+  <div class="form-group edna-form-group">
+    <label for="exampleInputPassword1">Address</label>
+    <input type="text" class="form-control" id="exampleInputPassword1" name="address">
+  </div>
+    <div class="form-group edna-form-group">
     <label for="exampleInputPassword1">No of Students in School</label>
-    <select>
+    <select name="students_no">
       <option value="1001 - 2500">1001 - 2500</option>
       <option value="2500 - 5000">2500 - 5000</option>
       <option value="5000 and above">5000 and above</option>
     </select>
   </div>
 
-  <div class="form-group">
+  <div class="form-group edna-form-group">
     <label for="exampleInputPassword1">No of Proposed Users</label>
-    <select>
+    <select name="proposed">
       <option value="1001 - 2500">1001 - 2500</option>
       <option value="2500 - 5000">2500 - 5000</option>
       <option value="5000 and above">5000 and above</option>
@@ -38,3 +94,9 @@
   </div>
     <button type="submit" class="btn btn-default">Submit</button>
 </form>
+</div>
+
+</section>
+</section>
+</body>
+</html>

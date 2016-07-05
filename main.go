@@ -89,16 +89,18 @@ func main() {
 	router.Get("/api/GetLgas", commonHandlers.ThenFunc(config.GetLga))
 	router.Get("/api/GetCountries", commonHandlers.ThenFunc(config.GetCountries))
 	router.Get("/verify", commonHandlers.ThenFunc(config.VerifySchool))
+	//Enterprise routes
+	router.Post("/enterprise", commonHandlers.ThenFunc(config.EnterpriseHandler))
 
 	router.Get("/", commonHandlers.Append(dbsetter).ThenFunc(config.RootHandler))
 
 	router.HandleMethodNotAllowed = false
 	router.NotFound = http.FileServer(http.Dir("./static")).ServeHTTP
+	/*Csv parsing routes
 	router.Get("/test", commonHandlers.ThenFunc(config.ParseHandler))
 	router.Get("/test2", commonHandlers.ThenFunc(config.Test))
+	*/
 	//api routes for iparent
-	router.Get("/api/child", commonHandlers.ThenFunc(ChildHandler))
-	router.Get("/api/board", commonHandlers.ThenFunc(BoardHandler))
 	router.Get("/api/wards", commonHandlers.ThenFunc(config.GuardianWardsHandler))
 	router.Get("/api/GetAssesment", commonHandlers.ThenFunc(config.GetAssessmentsOfAStudentMobile))
 	router.Post("/api/verify", commonHandlers.ThenFunc(config.AuthGuardianHandler))

@@ -236,7 +236,6 @@ func (c *Config) AuthGuardianHandler(w http.ResponseWriter, r *http.Request) {
 	*/
 
 	//log.Println(guardian.Pin2)
-	log.Println(r.FormValue("Pin2"))
 	guardian, err := u.AuthGuardian(tmp, r.FormValue("Pin2"))
 	if err != nil {
 		log.Println(err)

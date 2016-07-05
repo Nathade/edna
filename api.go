@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -39,55 +38,6 @@ type Parent struct {
 	Pin      string        `bson:"pin"`
 }
 
-func ChildView() []*child {
-	result := []*child{}
-	data := new(child)
-	data.ID = "09opie839044"
-	data.ChildName = "Smile mmumene"
-	data.School = "Crutech"
-	result = append(result, data)
-
-	dat := new(child)
-	dat.ID = "09opie839044"
-	dat.ChildName = "Anthony Alaribe"
-	dat.School = "Crutech"
-	result = append(result, dat)
-
-	return result
-}
-
-func GetBoard() []*Board {
-	result := []*Board{}
-	data := new(Board)
-	data.Date = "25 Feb 2016"
-	data.Header = "School Resumption"
-	data.Posted = "Smile mmumene"
-	data.Txt = "asdfghjiiue eyuysyuehh syeyysieyjesj yeyeuyusy hhjhjksjdjkdjks jjjdiieijijism kjkjkjk"
-	result = append(result, data)
-
-	dat := new(Board)
-	dat.Date = "25 Feb 2016"
-	dat.Header = "School Resumption"
-	dat.Posted = "Anthony Alaribe"
-	dat.Txt = "asdfghjiiue eyuysyuehh syeyysieyjesj yeyeuyusy hhjhjksjdjkdjks jjjdiieijijism kjkjkjk"
-	result = append(result, dat)
-
-	return result
-}
-
-func BoardHandler(w http.ResponseWriter, r *http.Request) {
-	tmp := GetBoard()
-	result, _ := json.Marshal(tmp)
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(result)
-}
-
-func ChildHandler(w http.ResponseWriter, r *http.Request) {
-	tmp := ChildView()
-	result, _ := json.Marshal(tmp)
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(result)
-}
 func RegParent(w http.ResponseWriter, r *http.Request) {
 	//result := []string{}
 	tmp := r.URL.Query().Get("no")
