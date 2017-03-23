@@ -10,17 +10,18 @@
 # default for csharp files.
 # Note: This is only used by command line
 ###############################################################################
-*.css     diff=csharp
-*.css linguist-language=csharp
 
-*.cs     diff=csharp
-*.cs linguist-language=csharp
+*.html     diff=go
+*.html linguist-language=go
 
-*.html     diff=csharp
-*.html linguist-language=csharp
+*.html     diff=go
+*.html linguist-language=go
 
-*.html     diff=csharp
-*.html linguist-language=csharp
+*.go     diff=go
+*.go linguist-language=go
+
+*.go     diff=go
+*.go linguist-language=go
 
 ###############################################################################
 # Set the merge driver for project and solution files
